@@ -10,16 +10,8 @@ const CV_ADDED = 'CV_ADDED';
 export const Subscription={
     
        
-    cvUpdated: {
-        subscribe: (_: any,__: any,{db,pubSub}: any) => pubSub.subscribe(CV_UPDATED),
+    cvSub: {
+        subscribe: (_: any,__: any,{db,pubSub}: any) => pubSub.subscribe("cvsub"),
         resolve: (payload: any) => { return payload }
     },
-    cvadded: {
-        subscribe: (_: any,__: any,{db,pubSub}: any) => pubSub.subscribe(CV_ADDED),
-        resolve: (payload: any) => { return payload }
-    },
-    cvdeledted: {
-        subscribe: (_: any,__: any,{db,pubSub}: any) => pubSub.subscribe(CV_DELETED),
-        resolve: (payload: any) => { return payload }
-    }
 }
