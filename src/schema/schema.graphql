@@ -1,0 +1,67 @@
+enum Role{
+    user
+    admin
+}
+
+
+type User  {
+  id: String!
+  name: String
+  email: String
+  role: Role 
+  cvs: [Cv] 
+}
+
+
+type Cv  {
+  id: String!
+  name: String
+  age: String
+  job: String
+  user: User
+  skills: [Skill]
+}
+
+
+type Skill  {
+  id: String!
+  designation: String
+  cvs: [Cv]
+}
+
+type Query{
+    hello:String!
+    getCvs:[Cv]
+    getCvById(id: String!):Cv
+}
+
+type Mutation{
+    addcv(cvaddinput: CvAddInput) :Cv
+    updatecv(cvupdateinput: CvUpdateInput) :Cv
+    deleteCv(id: String!): Boolean!
+}
+
+input CvAddInput{
+     age: String!
+     job: String!
+     userId: String!
+     skills:[String!]
+}
+
+input CvUpdateInput{
+  id: String!
+  name: String
+  age: String
+  job: String
+  userId: String
+  skillIds: [String]
+}
+type Subscription {
+  cvUpdated: CvSubscriptionPayload!
+  cvadded: CvSubscriptionPayload!
+  cvdeledted: CvSubscriptionPayload!
+}
+type CvSubscriptionPayload {
+  msg: String!
+  cv: Cv!
+}
